@@ -94,6 +94,6 @@ New-AzVm `
 New-AzPrivateDnsZone -Name $privateDnsZoneName -ResourceGroupName $resourceGroupName
 New-AzPrivateDnsVirtualNetworkLink -ZoneName $privateDnsZoneName -ResourceGroupName $resourceGroupName -Name "mylink" -VirtualNetworkId $virtualNetwork.Id -EnableRegistration
 
-$Records = @(New-AzPrivateDnsRecordConfig -Cname "webserver.or.nottodo")
+$Records = @(New-AzPrivateDnsRecordConfig -Cname "$webVmName.$privateDnsZoneName")
 
 New-AzPrivateDnsRecordSet -Name "todo" -RecordType CNAME -ResourceGroupName $resourceGroupName -TTL 3600 -ZoneName $privateDnsZoneName -PrivateDnsRecords $Records
